@@ -5,9 +5,9 @@ on:
     branches:
       - main
     paths:
-      - 'csv/**'
-      - '*.csv'
-      - '*.json'
+      - "csv/**"
+      - "*.csv"
+      - "*.json"
 
 jobs:
   generate_csvw_from_csv_upload:
@@ -18,24 +18,24 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      
+
       - name: Install csvcubed
         run: pip install csvcubed
-      
+
       - name: Verify csvcubed installation
         run: csvcubed -h # Ideally, this should be csvcubed -v which we will have to implement into the csvcubed project.
-      
+
       - name: Check out repository
         uses: actions/checkout@v2
-      
+
       - name: View working directory
         run: ls -la $GITHUB_WORKSPACE
-      
+
       - name: List csvs and config jsons in repository
         run: |
           cd csv
           ls
-      
+
       - name: Build and inspect a CSV-W generated from a csv upload
         # TODO: Iterate over the folders/files and then run csvcubed build and inspect.
         run: |
@@ -44,7 +44,7 @@ jobs:
           ls out/
           echo $'\nInspecting CSV-Ws\n-----------------'
           csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
-          
+
       - name: Build and inspect a CSV-W generated from a csv and config.json upload
         # TODO: Iterate over the files and then run csvcubed build and inspect.
         run: |
@@ -53,16 +53,16 @@ jobs:
           ls out/
           echo $'\nInspecting CSV-Ws\n-----------------'
           csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
-        
+
       - name: Commit generated CSV-Ws to the repository
         run: |
+          echo $'\nCommitting CSV-Ws\n-----------------'
           git config --global user.name "CSV-W from csv upload generator"
           git add out/
           git commit -m "CSV-Ws generated from csv upload - $(date +'%d-%m-%Y at %H:%M:%S')"
           git push
-          echo "Committed CSV-Ws"
-  
+
       - name: Publish CSV-Ws and logs to GitHub Pages
         # TODO: Publish generated CSV-Ws and logs to GitHub pages.
         run: |
-          echo "Published CSV-Ws to GitHub Pages at <URL to GitHub Pages>"
+          echo $'\nPublishing CSV-Ws to GitHub Pages\n---------------------------'
