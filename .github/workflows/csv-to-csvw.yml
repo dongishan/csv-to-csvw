@@ -2,14 +2,15 @@ name: Generate CSV-W from csv upload to repository.
 
 on:
   push:
-   branches: [ $default-branch ]
+    branches:
+      - main
 
 jobs:
   generate_csvw_from_csv_upload:
     name: Generate CSV-W from csv upload
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python 3.9 
+      - name: Set up Python 3.9
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
