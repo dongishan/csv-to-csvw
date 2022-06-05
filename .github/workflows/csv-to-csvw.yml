@@ -14,21 +14,32 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
+      
       - name: Install csvcubed
         run: pip install csvcubed
+      
       - name: Verify csvcubed installation
         run: csvcubed -h # Ideally, this should be csvcubed -v which we will have to implement into the csvcubed project.
+      
       - name: Check-out repository
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name : machine ls $GITHUB_WORKSPACE
-        run : "ls -la $GITHUB_WORKSPACE"
-      - name: List csvs and config jsons in repo
+      
+      - name: View working directory
+        run: ls -la $GITHUB_WORKSPACE
+      
+      - name: List csvs and config jsons in repository
         run: |
           cd csv
-          ls -la
-      - name: Building a CSV-W from csv
-        run: pwd
-      - name: Building a CSV-W from csv and config.json
-        run: csvcubed build csv/sweden_at_eurovision_no_missing.csv -c csv/sweden_at_eurovision_no_missing.csv.json
+          ls
+      
+      - name: Build a CSV-W from csv
+        run: |
+          csvcubed build csv/sweden_at_eurovision_no_missing.csv
+          ls
+      
+      - name: Build a CSV-W from csv and config.json
+        run: |
+          csvcubed build csv/sweden_at_eurovision_no_missing.csv -c csv/sweden_at_eurovision_no_missing.csv.json
+          ls
