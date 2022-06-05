@@ -18,7 +18,12 @@ jobs:
         run: pip install csvcubed
       - name: Verify csvcubed installation
         run: csvcubed -h # Ideally, this should be csvcubed -v which we will have to implement into the csvcubed project.
+      - name: List csvs and config jsons in repo
+        run: |
+            cd csv
+            ls
+
       - name: Building a CSV-W from csv
-        run: pwd && ls
+        run: pwd
       - name: Building a CSV-W from csv and config.json
         run: csvcubed build csv/sweden_at_eurovision_no_missing.csv -c csv/sweden_at_eurovision_no_missing.csv.json
