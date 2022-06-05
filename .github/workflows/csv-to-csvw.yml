@@ -54,6 +54,7 @@ jobs:
           echo $'\nInspecting CSV-Ws\n'
           csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
 
+      # TODO: Change this to upload to artifacts: upload-artifact@v*
       - name: Commit generated CSV-Ws to the repository
         run: |
           echo $'\nCommitting CSV-Ws\n'
