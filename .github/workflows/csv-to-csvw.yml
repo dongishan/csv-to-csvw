@@ -20,8 +20,10 @@ jobs:
         run: csvcubed -h # Ideally, this should be csvcubed -v which we will have to implement into the csvcubed project.
       - name: List csvs and config jsons in repo
         run: |
-            cd csv
-            ls
+          pwd
+          ls
+          cd csv
+          ls
 
       - name: Building a CSV-W from csv
         run: pwd
