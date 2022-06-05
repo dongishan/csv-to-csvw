@@ -1,2 +1,2 @@
 # csv-to-csvw
-This repo provides an example github action for generating CSV-Ws by committing a CSV.
+This repo provides an example GitHub Action for generating CSV-Ws from csv uploads to the repository.
