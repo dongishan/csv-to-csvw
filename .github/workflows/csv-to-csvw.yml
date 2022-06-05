@@ -43,3 +43,9 @@ jobs:
         run: |
           csvcubed build csv/sweden_at_eurovision_no_missing.csv -c csv/sweden_at_eurovision_no_missing.csv.json
           ls out/
+
+      - name: Commit generated CSV-Ws to the repository
+        run: |
+          git config --global user.name "CSV-W from csv upload generator"
+          git add out/
+          git commit -m "CSV-Ws generated from csv upload - $(date +'%Y-%m-%dT%H:%M:%S')"
