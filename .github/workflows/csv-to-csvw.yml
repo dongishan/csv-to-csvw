@@ -17,4 +17,4 @@ jobs:
       - name: Install csvcubed package
         run: pip install csvcubed
       - name: Verify csvcubed installation
-        run: csvcubed -v
+        run: csvcubed -h # Ideally, this should be csvcubed -v which we will have to implement into the csvcubed project.
