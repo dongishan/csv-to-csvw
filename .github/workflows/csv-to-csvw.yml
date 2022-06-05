@@ -39,19 +39,19 @@ jobs:
       - name: Build and inspect a CSV-W generated from a csv upload
         # TODO: Iterate over the folders/files and then run csvcubed build and inspect.
         run: |
-          echo "\nBuilding CSV-Ws\n-----------------"
+          echo $'\nBuilding CSV-Ws\n-----------------'
           csvcubed build csv/sweden_at_eurovision_no_missing.csv
           ls out/
-          echo "\nInspecting CSV-Ws\n-----------------"
+          echo $'\nInspecting CSV-Ws\n-----------------'
           csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
           
       - name: Build and inspect a CSV-W generated from a csv and config.json upload
         # TODO: Iterate over the files and then run csvcubed build and inspect.
         run: |
-          echo "\nBuilding CSV-Ws\n-----------------"
+          echo $'\nBuilding CSV-Ws\n-----------------'
           csvcubed build csv/sweden_at_eurovision_no_missing.csv -c csv/sweden_at_eurovision_no_missing.csv.json
           ls out/
-          echo "\nInspecting CSV-Ws\n-----------------"
+          echo $'\nInspecting CSV-Ws\n-----------------'
           csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
         
       - name: Commit generated CSV-Ws to the repository
