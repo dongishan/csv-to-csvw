@@ -20,6 +20,13 @@ jobs:
         run: csvcubed -h # Ideally, this should be csvcubed -v which we will have to implement into the csvcubed project.
       - name: Check-out repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name : machine ls $GITHUB_WORKSPACE
+        run : "ls -la $GITHUB_WORKSPACE"
+      - name : machine ls $HOME
+        working-directory : "."
+        run : "ls -la $HOME"
       - name: List csvs and config jsons in repo
         run: |
           cd csv-to-csvw
