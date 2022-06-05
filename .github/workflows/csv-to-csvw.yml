@@ -24,15 +24,10 @@ jobs:
           fetch-depth: 0
       - name : machine ls $GITHUB_WORKSPACE
         run : "ls -la $GITHUB_WORKSPACE"
-      - name : machine ls $HOME
-        working-directory : "."
-        run : "ls -la $HOME"
       - name: List csvs and config jsons in repo
         run: |
-          cd csv-to-csvw
-          ls
           cd csv
-          ls
+          ls -la
       - name: Building a CSV-W from csv
         run: pwd
       - name: Building a CSV-W from csv and config.json
