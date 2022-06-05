@@ -65,4 +65,4 @@ jobs:
       - name: Publish CSV-Ws and logs to GitHub Pages
         # TODO: Publish generated CSV-Ws and logs to GitHub pages.
         run: |
-          echo $'\nPublishing CSV-Ws to GitHub Pages\'
+          echo $'\nPublishing CSV-Ws to GitHub Pages\n'
