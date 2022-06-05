@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'csv/**'
 
 jobs:
   generate_csvw_from_csv_upload:
@@ -49,3 +51,4 @@ jobs:
           git config --global user.name "CSV-W from csv upload generator"
           git add out/
           git commit -m "CSV-Ws generated from csv upload - $(date +'%Y-%m-%dT%H:%M:%S')"
+          git push
