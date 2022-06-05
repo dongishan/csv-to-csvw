@@ -37,9 +37,9 @@ jobs:
       - name: Build a CSV-W from csv
         run: |
           csvcubed build csv/sweden_at_eurovision_no_missing.csv
-          ls
+          ls out/
       
       - name: Build a CSV-W from csv and config.json
         run: |
           csvcubed build csv/sweden_at_eurovision_no_missing.csv -c csv/sweden_at_eurovision_no_missing.csv.json
-          ls
+          ls out/
