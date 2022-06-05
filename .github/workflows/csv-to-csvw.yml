@@ -39,24 +39,24 @@ jobs:
       - name: Build and inspect a CSV-W generated from a csv upload
         # TODO: Iterate over the folders/files and then run csvcubed build and inspect.
         run: |
-          echo $'\nBuilding CSV-Ws\n-----------------'
+          echo $'\nBuilding CSV-Ws\n'
           csvcubed build csv/sweden_at_eurovision_no_missing.csv
           ls out/
-          echo $'\nInspecting CSV-Ws\n-----------------'
+          echo $'\nInspecting CSV-Ws\n'
           csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
 
       - name: Build and inspect a CSV-W generated from a csv and config.json upload
         # TODO: Iterate over the files and then run csvcubed build and inspect.
         run: |
-          echo $'\nBuilding CSV-Ws\n-----------------'
+          echo $'\nBuilding CSV-Ws\n'
           csvcubed build csv/sweden_at_eurovision_no_missing.csv -c csv/sweden_at_eurovision_no_missing.csv.json
           ls out/
-          echo $'\nInspecting CSV-Ws\n-----------------'
+          echo $'\nInspecting CSV-Ws\n'
           csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
 
       - name: Commit generated CSV-Ws to the repository
         run: |
-          echo $'\nCommitting CSV-Ws\n-----------------'
+          echo $'\nCommitting CSV-Ws\n'
           git config --global user.name "CSV-W from csv upload generator"
           git add out/
           git commit -m "CSV-Ws generated from csv upload - $(date +'%d-%m-%Y at %H:%M:%S')"
@@ -65,4 +65,4 @@ jobs:
       - name: Publish CSV-Ws and logs to GitHub Pages
         # TODO: Publish generated CSV-Ws and logs to GitHub pages.
         run: |
-          echo $'\nPublishing CSV-Ws to GitHub Pages\n---------------------------'
+          echo $'\nPublishing CSV-Ws to GitHub Pages\'
