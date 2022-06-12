@@ -39,9 +39,7 @@ jobs:
       - name: Finding csv and json files and storing as output
         run: |
           echo "::set-output name=CSV_FILE_LIST::$(find csv -name '*.csv' -print)"
-          echo "::set-output name=JSON_FILE_LIST::$(find csv -name '*.json' -print)"
-          echo $CSV_FILE_LIST
-          echo $JSON_FILE_LIST
+      
           
       - name: Build and inspect a CSV-W generated from a csv upload
         # TODO: Iterate over the folders/files and then run csvcubed build and inspect.
