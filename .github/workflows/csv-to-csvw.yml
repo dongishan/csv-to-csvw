@@ -27,7 +27,9 @@ jobs:
 
       - name: Check out repository
         uses: actions/checkout@v2
-
+        with:
+          fetch-depth: 0
+          
       - name: View working directory
         run: ls -la $GITHUB_WORKSPACE
 
@@ -35,13 +37,21 @@ jobs:
         id: changed-files
         uses: jitterbit/get-changed-files@v1
         with:
-          format: 'csv'
-        
+          format: "csv"
+
       - name: List all the changes files
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.changed-files.outputs.added_modified }}')
-          for added_modified_file in "${added_modified_files[@]}"; do
-            echo "Do something with this ${added_modified_file}."
+          for file in "${added_modified_files[@]}"; do
+            echo "Processing ${file}."
+            file_name="${file%.*}"
+            for file_secondary in "${added_modified_files[@]}"; do
+              if ["${file_secondary}" = "${file_name}.csv.json"]; then
+                echo "Found config."
+              else
+                echo "Not found config."
+              fi
+            done
           done
 
       - name: Build and inspect a CSV-W generated from a csv upload
