@@ -42,13 +42,14 @@ jobs:
       - name: List all the changes files
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.changed-files.outputs.added_modified }}')
-          echo "Changed files: ${added_modified_files}"
 
           for file in "${added_modified_files[@]}"; do
-            echo "Processing changed ${file}"  
+            echo "Processing changed file ${file}"  
             file_name="${file%.*}"
             file_extension="${file##*.}"
-
+            echo "File name: ${file_name}"
+            echo "File extension: ${file_extension}"
+            
             if [${file_extension} = "csv"]; then
               echo "Changed file is supported"
               for file_secondary in "${added_modified_files[@]}"; do
