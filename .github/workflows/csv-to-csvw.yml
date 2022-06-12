@@ -70,8 +70,8 @@ jobs:
                 echo $'Building CSV-Ws'
                 csvcubed build ${csv_file} -c ${config_file}
               fi
+              echo "===Finished processing file ${file}=="
             fi
-            echo "===Finished processing file ${file}=="
           done
         
           ls out/
