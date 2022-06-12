@@ -44,6 +44,7 @@ jobs:
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.changed-files.outputs.added_modified }}')
 
           for file in "${added_modified_files[@]}"; do
+            unset config_file
             file_name="${file%.*}"
             file_extension="${file##*.}"
 
@@ -57,15 +58,15 @@ jobs:
                 fi
               done
 
-              if [[ $config_file ]]; then
-                echo "Config for ${csv_file} is available: ${config_file}"
-                echo $'Building CSV-Ws'
-                csvcubed build ${csv_file} -c ${config_file}
-                ls out/
-              else
+              if [[ -z $config_file ]]; then
                 echo "Config for ${csv_file} is not available"
                 echo $'Building CSV-Ws'
                 csvcubed build ${csv_file}
+                ls out/
+              else
+                echo "Config for ${csv_file} is available: ${config_file}"
+                echo $'Building CSV-Ws'
+                csvcubed build ${csv_file} -c ${config_file}
                 ls out/
               fi
 
