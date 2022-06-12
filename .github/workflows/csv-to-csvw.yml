@@ -34,14 +34,14 @@ jobs:
         run: ls -la $GITHUB_WORKSPACE
 
       - name: Get all added/changed files
-        id: changed-files
+        id: get-changed-files
         uses: jitterbit/get-changed-files@v1
         with:
           format: "csv"
 
       - name: Process all added/changed files
         run: |
-          mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.changed-files.outputs.added_modified }}')
+          mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-changed-files.outputs.added_modified }}')
 
           for file in "${added_modified_files[@]}"; do
             unset config_file
@@ -53,10 +53,12 @@ jobs:
               csv_file=${file}
 
               for file_secondary in "${added_modified_files[@]}"; do
-                if [[ "${file_secondary%.*}.csv.json" == "${file_name}.csv.json" ]]; then
+                if [[ basename "$file_secondary" == "${file_name}.csv.json" ]]; then
                   config_file="${file}.json"
                 fi
               done
+
+              echo "config_file: $config_file"
 
               if [[ -z $config_file ]]; then
                 echo "Config for ${csv_file} is not available"
