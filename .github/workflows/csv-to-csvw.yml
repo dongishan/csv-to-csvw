@@ -48,17 +48,12 @@ jobs:
             file_extension="${file##*.}"
 
             if [[ "$file_extension" == "csv" ]]; then
-              echo "\n\nProcessing file ${file}"
+              echo "===Processing file ${file}=="
               csv_file=${file}
 
               for file_secondary in "${added_modified_files[@]}"; do
                 file_secondary_name="${file_secondary%.*}"
                 file_secondary_extension="${file_secondary##*.}"
-                
-                echo "file_secondary_name: ${file_secondary_name}"
-                echo "file_secondary_extension: ${file_secondary_extension}"
-                echo "file_name: ${file_name}.csv.json"
-
                 if [[ "${file_secondary_name}.${file_secondary_extension}" == "${file_name}.csv.json" ]]; then
                   config_file="${file}.json"
                 fi
@@ -76,6 +71,7 @@ jobs:
                 csvcubed build ${csv_file} -c ${config_file}
               fi
             fi
+            echo "===Finished processing file ${file}=="
           done
         
           ls out/
