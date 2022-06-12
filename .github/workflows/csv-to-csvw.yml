@@ -47,25 +47,24 @@ jobs:
             echo "Processing changed file ${file}"  
             file_name="${file%.*}"
             file_extension="${file##*.}"
-            echo "File name: ${file_name}"
-            echo "File extension: ${file_extension}"
 
             if [[ "$file_extension" == "csv" ]]; then
               echo "Changed file is supported"
-              for file_secondary in "${added_modified_files[@]}"; do
-                file_secondary_name="${file_secondary%.*}"
-                echo "file_secondary_name: ${file_secondary_name}.csv.json"
-                echo "file_name: ${file_name}.csv.json"
+              csv_file=${file}
 
-                if [[ "${file_secondary_name}.csv.json" == "${file_name}.csv.json" ]]; then
-                  echo "Config for ${file} is available: ${file_secondary}"
+              for file_secondary in "${added_modified_files[@]}"; do
+                if [[ "${file_secondary%.*}.csv.json" == "${file_name}.csv.json" ]]; then
+                  config_file="${file}.json"
+                  echo "Config for ${csv_file} is available: ${config_file}"
+
                   echo $'Building CSV-Ws'
-                  csvcubed build ${file} -c ${file_secondary}
+                  csvcubed build ${csv_file} -c ${config_file}
                   ls out/
                 else
-                  echo "Config for ${file} is not available"
+                  echo "Config for ${csv_file} is not available"
+
                   echo $'Building CSV-Ws'
-                  csvcubed build ${file}
+                  csvcubed build ${csv_file}
                   ls out/
                 fi
               done
