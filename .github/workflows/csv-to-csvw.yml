@@ -59,7 +59,7 @@ jobs:
                   config_file="${file}.json"
                 fi
               done
-
+              
               if [[ -z $config_file ]]; then
                 echo "Config for ${csv_file} is not available"
                 echo "Building CSV-W"
@@ -73,7 +73,7 @@ jobs:
               echo "Finished processing file ${file}"
             fi
           done
-          
+
           echo $'\nDisplaying outputs:'
           ls out/
 
