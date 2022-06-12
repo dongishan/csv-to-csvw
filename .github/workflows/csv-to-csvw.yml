@@ -58,33 +58,21 @@ jobs:
                 echo "file_name: ${file_name}.csv.json"
 
                 if [[ "${file_secondary_name}.csv.json" == "${file_name}.csv.json" ]]; then
-                  echo "Found config."
+                  echo "Config for ${file} is available: ${file_secondary}"
+                  echo $'Building CSV-Ws'
+                  csvcubed build ${file} -c ${file_secondary}
+                  ls out/
                 else
-                  echo "Not found config."
+                  echo "Config for ${file} is not available"
+                  echo $'Building CSV-Ws'
+                  csvcubed build ${file}
+                  ls out/
                 fi
               done
             else
               echo "Changed file is not supported"
             fi
           done
-
-      - name: Build and inspect a CSV-W generated from a csv upload
-        # TODO: Iterate over the folders/files and then run csvcubed build and inspect.
-        run: |
-          echo $'\nBuilding CSV-Ws\n'
-          csvcubed build csv/sweden_at_eurovision_no_missing.csv
-          ls out/
-          echo $'\nInspecting CSV-Ws\n'
-          csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
-
-      - name: Build and inspect a CSV-W generated from a csv and config.json upload
-        # TODO: Iterate over the files and then run csvcubed build and inspect.
-        run: |
-          echo $'\nBuilding CSV-Ws\n'
-          csvcubed build csv/sweden_at_eurovision_no_missing.csv -c csv/sweden_at_eurovision_no_missing.csv.json
-          ls out/
-          echo $'\nInspecting CSV-Ws\n'
-          csvcubed inspect out/sweden-at-eurovision-no-missing.csv-metadata.json
 
       # TODO: Change this to upload to artifacts: upload-artifact@v*
       - name: Commit generated CSV-Ws to the repository
