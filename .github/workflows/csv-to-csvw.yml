@@ -40,7 +40,9 @@ jobs:
         run: |
           echo "::set-output name=FILE_LIST::$(ls csv/ -R )"
           echo "${FILE_LIST}"
-          
+          for entry in "${FILE_LIST}"; do
+            echo "Entry: ${entry}"
+          done
       - name: Build and inspect a CSV-W generated from a csv upload
         # TODO: Iterate over the folders/files and then run csvcubed build and inspect.
         run: |
