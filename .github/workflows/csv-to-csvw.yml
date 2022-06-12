@@ -38,7 +38,6 @@ jobs:
 
       - name: Finding csv and json files and storing as output
         run: |
-          cd csv
           echo "::set-output name=CSV_FILE_LIST::$(find . -name '*.csv' -print)"
           echo "::set-output name=JSON_FILE_LIST::$(find . -name '*.json' -print)"
 
