@@ -49,8 +49,8 @@ jobs:
             file_extension="${file##*.}"
             echo "File name: ${file_name}"
             echo "File extension: ${file_extension}"
-            
-            if [${file_extension} = "csv"]; then
+
+            if [[${file_extension} = "csv"]]; then
               echo "Changed file is supported"
               for file_secondary in "${added_modified_files[@]}"; do
                 if [${file_secondary} = "${file_name}.csv.json"]; then
