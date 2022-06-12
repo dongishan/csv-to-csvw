@@ -48,7 +48,7 @@ jobs:
             file_extension="${file##*.}"
 
             if [[ "$file_extension" == "csv" ]]; then
-              echo $'\nProcessing file ${file}'
+              echo $'\nProcessing file $file'
               csv_file=${file}
 
               for file_secondary in "${added_modified_files[@]}"; do
