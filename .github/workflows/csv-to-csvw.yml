@@ -38,8 +38,9 @@ jobs:
 
       - name: Finding csv and json files and storing as variables
         run: |
-          echo "::set-output name=CSV_FILE_LIST::$(ls csv/ -R *.csv *.csv.json)"
-      
+          echo "::set-output name=CSV_FILE_LIST::$(ls -d *.csv csv/ -R )"
+          echo "::set-output name=CONFIG_FILE_LIST::$(ls -d *.csv.json csv/ -R )"
+
           
       - name: Build and inspect a CSV-W generated from a csv upload
         # TODO: Iterate over the folders/files and then run csvcubed build and inspect.
