@@ -36,7 +36,7 @@ jobs:
           cd csv
           ls
 
-      - name: Finding csv and json files and storing as output
+      - name: Finding csv and json files and storing as variables
         run: |
           echo "::set-output name=CSV_FILE_LIST::$(find . -type f -path 'csv/*' -name '*.csv' -print)"
       
