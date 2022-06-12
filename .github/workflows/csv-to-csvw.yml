@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "csv/**"
-      - "*.csv"
-      - "*.json"
+    # paths:
+    #   - "csv/**"
+    #   - "*.csv"
+    #   - "*.json"
 
 jobs:
   generate_csvw_from_csv_upload:
