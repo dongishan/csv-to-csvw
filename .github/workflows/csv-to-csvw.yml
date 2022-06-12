@@ -33,13 +33,13 @@ jobs:
       - name: View working directory
         run: ls -la $GITHUB_WORKSPACE
 
-      - name: Get all added/changed files
+      - name: Get all added/changed files inside csv folder
         id: get-changed-files
         uses: jitterbit/get-changed-files@v1
         with:
           format: "csv"
 
-      - name: Process all added/changed files
+      - name: Process all added/changed files inside csv folder
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-changed-files.outputs.added_modified }}')
 
