@@ -55,21 +55,23 @@ jobs:
               for file_secondary in "${added_modified_files[@]}"; do
                 if [[ "${file_secondary%.*}.csv.json" == "${file_name}.csv.json" ]]; then
                   config_file="${file}.json"
-                  echo "Config for ${csv_file} is available: ${config_file}"
-
-                  echo $'Building CSV-Ws'
-                  csvcubed build ${csv_file} -c ${config_file}
-                  ls out/
-                else
-                  echo "Config for ${csv_file} is not available"
-
-                  echo $'Building CSV-Ws'
-                  csvcubed build ${csv_file}
-                  ls out/
                 fi
               done
-            else
-              echo "Changed file is not supported"
+
+              if [[ $config_file ]]
+                echo "Config for ${csv_file} is available: ${config_file}"
+
+                echo $'Building CSV-Ws'
+                csvcubed build ${csv_file} -c ${config_file}
+                ls out/
+              else
+                echo "Config for ${csv_file} is not available"
+
+                echo $'Building CSV-Ws'
+                csvcubed build ${csv_file}
+                ls out/
+              fi
+
             fi
           done
 
