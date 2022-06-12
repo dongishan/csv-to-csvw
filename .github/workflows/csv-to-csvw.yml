@@ -48,7 +48,7 @@ jobs:
             file_extension="${file##*.}"
 
             if [[ "$file_extension" == "csv" ]]; then
-              printf "\n--Processing file ${file}"
+              echo $'\nProcessing file ${file}'
               csv_file=${file}
 
               for file_secondary in "${added_modified_files[@]}"; do
@@ -61,18 +61,17 @@ jobs:
 
               if [[ -z $config_file ]]; then
                 echo "Config for ${csv_file} is not available"
-                echo $'Building CSV-Ws'
+                echo "Building CSV-W"
                 csvcubed build ${csv_file}
               else
                 echo "Config for ${csv_file} is available: ${config_file}"
-                echo $'Building CSV-Ws'
+                echo "Building CSV-Ws"
                 csvcubed build ${csv_file} -c ${config_file}
               fi
-              printf "--Finished processing file ${file}"
+              echo "--Finished processing file ${file}"
             fi
           done
-
-          printf "\nDisplaying outputs:"
+          echo $'\nDisplaying outputs:'
           ls out/
 
       # TODO: Change this to upload to artifacts: upload-artifact@v*
