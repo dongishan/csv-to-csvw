@@ -52,6 +52,14 @@ jobs:
 
             if [[ "$file_extension" == "csv" ]]; then
               echo "Changed file is supported"
+              for file_secondary in "${added_modified_files[@]}"; do
+                file_secondary_name="${file_secondary%.*}"
+                if [[ "$file_secondary_name" == "${file_name}.csv.json" ]]; then
+                  echo "Found config."
+                else
+                  echo "Not found config."
+                fi
+              done
             else
               echo "Changed file is not supported"
             fi
