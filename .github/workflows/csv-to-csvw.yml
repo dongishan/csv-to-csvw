@@ -33,23 +33,22 @@ jobs:
       - name: View working directory
         run: ls -la $GITHUB_WORKSPACE
 
-      - name: Get all the changes files
+      - name: Get all added/changed files
         id: changed-files
         uses: jitterbit/get-changed-files@v1
         with:
           format: "csv"
 
-      - name: List all the changes files
+      - name: Process all added/changed files
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.changed-files.outputs.added_modified }}')
 
           for file in "${added_modified_files[@]}"; do
-            echo "Processing changed file ${file}"  
             file_name="${file%.*}"
             file_extension="${file##*.}"
 
             if [[ "$file_extension" == "csv" ]]; then
-              echo "Changed file is supported"
+              echo "Processing file ${file}"
               csv_file=${file}
 
               for file_secondary in "${added_modified_files[@]}"; do
@@ -60,13 +59,11 @@ jobs:
 
               if [[ $config_file ]]; then
                 echo "Config for ${csv_file} is available: ${config_file}"
-
                 echo $'Building CSV-Ws'
                 csvcubed build ${csv_file} -c ${config_file}
                 ls out/
               else
                 echo "Config for ${csv_file} is not available"
-
                 echo $'Building CSV-Ws'
                 csvcubed build ${csv_file}
                 ls out/
