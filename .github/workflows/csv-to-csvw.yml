@@ -53,7 +53,9 @@ jobs:
 
               for file_secondary in "${added_modified_files[@]}"; do
                 echo "file_secondary: ${file_secondary##*/}"
-                if [[ ${file_secondary##*/} == "${file_name}.csv.json" ]]; then
+                echo "file_secondary: ${file}.json"
+                
+                if [[ ${file_secondary##*/} == "${file}.json" ]]; then
                   config_file="${file}.json"
                 fi
               done
