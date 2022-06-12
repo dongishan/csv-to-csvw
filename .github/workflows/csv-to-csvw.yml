@@ -58,7 +58,7 @@ jobs:
                 fi
               done
 
-              if [[ $config_file ]]
+              if [[ $config_file ]]; then
                 echo "Config for ${csv_file} is available: ${config_file}"
 
                 echo $'Building CSV-Ws'
