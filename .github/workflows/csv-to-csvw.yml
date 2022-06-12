@@ -37,14 +37,15 @@ jobs:
           ls
 
       - name: Finding csv and json files and storing as variables
-        id: finding-files
+        uses: jitterbit/get-changed-files@v1
+        with:
+          format: 'csv'
         run: |
-          echo "::set-output name=FILE_LIST::$(ls csv/ -R )"
-          echo "${FILE_LIST}"
-          read -a myarray <<< ${{ steps.finding-files.outputs.FILE_LIST }}
-          for entry in "${myarray[@]}"; do
-            echo "Entry: ${entry}"
+          mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.files.outputs.added_modified }}')
+          for added_modified_file in "${added_modified_files[@]}"; do
+            echo "Do something with this ${added_modified_file}."
           done
+          
       - name: Build and inspect a CSV-W generated from a csv upload
         # TODO: Iterate over the folders/files and then run csvcubed build and inspect.
         run: |
