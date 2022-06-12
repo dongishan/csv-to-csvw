@@ -43,17 +43,22 @@ jobs:
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.changed-files.outputs.added_modified }}')
           echo "All changed files: ${added_modified_files}"
-          
+
           for file in "${added_modified_files[@]}"; do
             echo "Processing ${file}."
+            
             file_name="${file%.*}"
-            for file_secondary in "${added_modified_files[@]}"; do
-              if ["${file_secondary}" = "${file_name}.csv.json"]; then
-                echo "Found config."
-              else
-                echo "Not found config."
-              fi
-            done
+            file_extension="${file##*.}"
+
+            if ["${file_extension}" = "csv"]; then
+              for file_secondary in "${added_modified_files[@]}"; do
+                if ["${file_secondary}" = "${file_name}.csv.json"]; then
+                  echo "Found config."
+                else
+                  echo "Not found config."
+                fi
+              done
+            fi
           done
 
       - name: Build and inspect a CSV-W generated from a csv upload
