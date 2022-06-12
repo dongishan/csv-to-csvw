@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - main
-    # paths:
-    #   - "csv/**"
-    #   - "*.csv"
-    #   - "*.json"
+    paths:
+      - "csv/**"
+      - "*.csv"
+      - "*.json"
 
 jobs:
   generate_csvw_from_csv_upload:
@@ -30,11 +30,6 @@ jobs:
 
       - name: View working directory
         run: ls -la $GITHUB_WORKSPACE
-
-      - name: List folders and files inside the csv folder
-        run: |
-          cd csv
-          ls
 
       - name: Get all the changes files
         id: changed-files
