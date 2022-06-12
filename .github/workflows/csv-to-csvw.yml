@@ -57,7 +57,7 @@ jobs:
                 echo "file_secondary_name: ${file_secondary_name}.csv.json"
                 echo "file_name: ${file_name}.csv.json"
 
-                if [[ "${file_secondary_name}.csv.json"" == "${file_name}.csv.json" ]]; then
+                if [[ "${file_secondary_name}.csv.json" == "${file_name}.csv.json" ]]; then
                   echo "Found config."
                 else
                   echo "Not found config."
