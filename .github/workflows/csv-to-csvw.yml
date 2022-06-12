@@ -48,7 +48,8 @@ jobs:
             file_extension="${file##*.}"
 
             if [[ "$file_extension" == "csv" ]]; then
-              echo $'\nProcessing file $file'
+              echo $'\n'
+              echo "Processing file ${file}"
               csv_file=${file}
 
               for file_secondary in "${added_modified_files[@]}"; do
@@ -68,9 +69,11 @@ jobs:
                 echo "Building CSV-Ws"
                 csvcubed build ${csv_file} -c ${config_file}
               fi
+              
               echo "Finished processing file ${file}"
             fi
           done
+          
           echo $'\nDisplaying outputs:'
           ls out/
 
