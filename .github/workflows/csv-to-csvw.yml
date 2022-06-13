@@ -73,7 +73,8 @@ jobs:
               fi
               
               echo "Inspecting CSV-W"
-              ls -la "${GITHUB_WORKSPACE}/out/"
+              ls -la "${GITHUB_WORKSPACE}/${out_path}/"
+              pwd
               csvcubed inspect "${GITHUB_WORKSPACE}/${out_path}${file_name}-metadata.json"
               
               unset config_file
