@@ -50,7 +50,10 @@ jobs:
             if [[ "$file_extension" == "csv" ]]; then
               echo $'\n'
               echo "Processing file ${file}"
+
               csv_file=${file}
+              out_path="out/${file}/"
+              echo "Output path ${out_path}"
 
               for file_secondary in "${added_modified_files[@]}"; do
                 file_secondary_name="${file_secondary%.*}"
@@ -63,11 +66,11 @@ jobs:
               if [[ -z $config_file ]]; then
                 echo "Config for ${csv_file} is not available"
                 echo "Building CSV-W"
-                csvcubed build ${csv_file}
+                csvcubed build ${csv_file} --our $out_path
               else
                 echo "Config for ${csv_file} is available: ${config_file}"
-                echo "Building CSV-Ws"
-                csvcubed build ${csv_file} -c ${config_file}
+                echo "Building CSV-W"
+                csvcubed build ${csv_file} -c $config_file --out $out_path
               fi
               
               echo "Finished processing file ${file}"
