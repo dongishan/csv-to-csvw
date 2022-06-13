@@ -52,7 +52,6 @@ jobs:
             if [[ "$file_extension" == "csv" ]]; then
               echo $'\n'
               echo "Processing file ${file}"
-              echo "----------------------"
               echo "Output path is ${out_path}"
 
               csv_file=${file}
