@@ -74,7 +74,7 @@ jobs:
               fi
               
               echo "Inspecting CSV-W"
-              ls -la $GITHUB_WORKSPACE
+              ls -la "${GITHUB_WORKSPACE}/out/"
               csvcubed inspect "${GITHUB_WORKSPACE}/${out_path}${file_name}-metadata.json"
               
               echo "Finished processing file ${file}"
