@@ -43,7 +43,6 @@ jobs:
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-changed-files.outputs.added_modified }}')
           for file in "${added_modified_files[@]}"; do
-            unset config_file
             file_path="${file%.*}"
             file_name="${file_path##*/}"
             file_extension="${file##*.}"
@@ -77,6 +76,7 @@ jobs:
               ls -la "${GITHUB_WORKSPACE}/out/"
               csvcubed inspect "${GITHUB_WORKSPACE}/${out_path}${file_name}-metadata.json"
               
+              unset config_file
               echo "Finished processing file ${file}"
             fi
           done
