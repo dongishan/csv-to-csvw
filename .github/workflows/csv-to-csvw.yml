@@ -92,8 +92,10 @@ jobs:
           git push -u origin gh-pages -f
 
           touch .nojekyll
+          touch index.html
           touch README.md
           git add .nojekyll
+          git add index.html
           git add README.md
           git add out/
           git commit -m "CSV-Ws generated from csv upload - $(date +'%d-%m-%Y at %H:%M:%S')"
