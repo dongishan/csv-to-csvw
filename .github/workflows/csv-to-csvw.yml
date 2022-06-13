@@ -52,6 +52,7 @@ jobs:
             if [[ "$file_extension" == "csv" ]]; then
               echo $'\n'
               echo "Processing file ${file}"
+              echo "----------------------"
               echo "Output path is ${out_path}"
 
               csv_file=${file}
@@ -105,9 +106,8 @@ jobs:
           echo $'\n'
           echo "Publishing to GitHub Pages"
           git checkout -b gh-pages
-          git push
-          git pull
-          
+   
+
           rm -r csv
           rm -r LICENSE
           rm -r README.md
@@ -116,4 +116,4 @@ jobs:
           git add .nojekyll
           git add out
           git commit -m "Updating outputs in GitHub Pages"
-          git push -f
+          git push --set-upstream origin gh-pages
