@@ -94,9 +94,10 @@ jobs:
           git commit -m "CSV-Ws generated from csv upload - $(date +'%d-%m-%Y at %H:%M:%S')"
           git push
 
-      - name: Deploy CSV-Ws and logs to GitHub Pages
+      - name: Publish CSV-Ws and logs to artefacts
         if: ${{ fromJSON(steps.process-files.outputs.has_outputs) == true }}
-        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        uses: actions/upload-artifact@v2
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: out # The folder the action should deploy.
+          name: assets-for-download
+          path: out
+          
