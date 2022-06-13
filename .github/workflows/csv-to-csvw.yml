@@ -106,14 +106,11 @@ jobs:
           echo $'\n'
           echo "Publishing to GitHub Pages"
           git checkout -b gh-pages
-   
-
           rm -r csv
           rm -r LICENSE
           rm -r README.md
           rm -r .github/workflows
           touch .nojekyll
-          git add .nojekyll
-          git add out
-          git commit -m "Updating outputs in GitHub Pages"
+          git add *
+          git commit -m "Updating outputs in GitHub Pages - $(date +'%d-%m-%Y at %H:%M:%S')"
           git push --set-upstream origin gh-pages
