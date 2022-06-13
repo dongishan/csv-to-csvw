@@ -40,6 +40,7 @@ jobs:
           format: "csv"
 
       - name: Process all added/changed files inside csv folder
+        id: process-files
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-added-changed-files.outputs.added_modified }}')
           for file in "${added_modified_files[@]}"; do
@@ -52,7 +53,7 @@ jobs:
               echo $'\n'
               echo "Processing file ${file}"
               echo "Output path is ${out_path}"
-
+          
               csv_file=${file}
               for file_secondary in "${added_modified_files[@]}"; do
                 file_secondary_name="${file_secondary%.*}"
@@ -74,9 +75,12 @@ jobs:
               
               echo "Inspecting CSV-W"
               ls -la "${GITHUB_WORKSPACE}/${out_path}/"
+              csvcubed inspect "${GITHUB_WORKSPACE}/${out_path}${file_name//[ ,_]/-}.${file_extension}-metadata.json"
               
               unset config_file
               echo "Finished processing file ${file}"
+              echo "::set-output name=has_outputs::${{ true }}"
+            fi
           done
 
       # TODO: Change this to upload to artifacts: upload-artifact@v*
