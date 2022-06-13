@@ -44,21 +44,21 @@ jobs:
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-changed-files.outputs.added_modified }}')
           for file in "${added_modified_files[@]}"; do
             unset config_file
-            file_name="${file%.*}"
+            file_path="${file%.*}"
+            file_name="${file_path##*/}"
             file_extension="${file##*.}"
+            out_path="out/${file_path#csv/}/"
 
             if [[ "$file_extension" == "csv" ]]; then
               echo $'\n'
               echo "Processing file ${file}"
-
-              csv_file=${file}
-              out_path="out/${file_name#csv/}/"
               echo "Output path is ${out_path}"
-
+          
+              csv_file=${file}
               for file_secondary in "${added_modified_files[@]}"; do
                 file_secondary_name="${file_secondary%.*}"
                 file_secondary_extension="${file_secondary##*.}"
-                if [[ "${file_secondary_name}.${file_secondary_extension}" == "${file_name}.csv.json" ]]; then
+                if [[ "${file_secondary_name}.${file_secondary_extension}" == "${file_path}.csv.json" ]]; then
                   config_file="${file}.json"
                 fi
               done
@@ -72,6 +72,9 @@ jobs:
                 echo "Building CSV-W"
                 csvcubed build ${csv_file} -c $config_file --out $out_path
               fi
+              
+              echo "Inspecting CSV-W"
+              csvcubed inspect "${out_path}/file_name-metadata.json" >> "${out_path/inspect_out.log}"
               
               echo "Finished processing file ${file}"
             fi
