@@ -89,8 +89,7 @@ jobs:
           echo $'\nCommitting CSV-Ws\n'
           git config --global user.name "CSV-W from csv upload generator"
           git checkout -b gh-pages
-          git pull -f
-          git push -u origin gh-pages
+          git push -u origin gh-pages -f
 
           touch .nojekyll
           touch README.md
