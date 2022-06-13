@@ -86,6 +86,7 @@ jobs:
 
       # TODO: Change this to upload to artifacts: upload-artifact@v*
       - name: Commit generated CSV-Ws to the repository
+        if: ${{ fromJSON(steps.process-files.outputs.has_outputs) == true }}
         run: |
           echo ${{ fromJSON(steps.process-files.outputs.has_outputs) }}
           echo $'\nCommitting CSV-Ws\n'
