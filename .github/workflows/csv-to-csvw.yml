@@ -111,6 +111,5 @@ jobs:
           rm -r README.md
           rm -r .github/workflows
           touch .nojekyll
-          git add *
-          git commit -m "Updating outputs in GitHub Pages - $(date +'%d-%m-%Y at %H:%M:%S')"
+          git commit -a -m "Updating outputs in GitHub Pages - $(date +'%d-%m-%Y at %H:%M:%S')"
           git push --set-upstream origin gh-pages
