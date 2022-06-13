@@ -80,12 +80,13 @@ jobs:
               unset config_file
               echo "Finished processing file ${file}"
               echo "::set-output name=has_outputs::${{ false }}"
+
             fi
           done
 
       # TODO: Change this to upload to artifacts: upload-artifact@v*
       - name: Commit generated CSV-Ws to the repository
-        if: ${{ steps.process-files.outputs.has_outputs }}
+        if: ${{ steps.process-files.outputs.has_outputs == true }}
         run: |
           echo $'\nCommitting CSV-Ws\n'
           git config --global user.name "CSV-W from csv upload generator"
