@@ -74,7 +74,6 @@ jobs:
               fi
               
               echo "Inspecting CSV-W"
-              ls -la "${GITHUB_WORKSPACE}/${out_path}/"
               csvcubed inspect "${GITHUB_WORKSPACE}/${out_path}${file_name//[ ,_]/-}.${file_extension}-metadata.json" >> "${out_path}inspect_output.txt"
               
               unset config_file
@@ -94,6 +93,6 @@ jobs:
           git add .nojekyll
           git add out/
           git commit -m "CSV-Ws generated from csv upload - $(date +'%d-%m-%Y at %H:%M:%S')"
-          git checkout gh-pages
+          git checkout -b gh-pages
           git reset --hard main
           git push -f
