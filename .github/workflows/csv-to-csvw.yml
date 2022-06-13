@@ -105,6 +105,9 @@ jobs:
           echo $'\n'
           echo "Publishing to GitHub Pages"
           git checkout -b gh-pages
+          git push
+          git pull
+          
           rm -r csv
           rm -r LICENSE
           rm -r README.md
