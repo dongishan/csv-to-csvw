@@ -34,14 +34,15 @@ jobs:
         run: ls -la $GITHUB_WORKSPACE
 
       - name: Get all added/changed files inside csv folder
-        id: get-changed-files
+        id: get-added-changed-files
         uses: jitterbit/get-changed-files@v1
         with:
           format: "csv"
 
       - name: Process all added/changed files inside csv folder
+        id: process-files
         run: |
-          mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-changed-files.outputs.added_modified }}')
+          mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-added-changed-files.outputs.added_modified }}')
           for file in "${added_modified_files[@]}"; do
             file_path="${file%.*}"
             file_name="${file_path##*/}"
@@ -74,15 +75,16 @@ jobs:
               
               echo "Inspecting CSV-W"
               ls -la "${GITHUB_WORKSPACE}/${out_path}/"
-              csvcubed inspect "${GITHUB_WORKSPACE}/${out_path}${file_name}.${file_extension}-metadata.json"
+              csvcubed inspect "${GITHUB_WORKSPACE}/${out_path}${file_name//[ ,_]/-}.${file_extension}-metadata.json"
               
               unset config_file
               echo "Finished processing file ${file}"
-            fi
+              echo "::set-output name=has_outputs::${{ true }}
           done
 
       # TODO: Change this to upload to artifacts: upload-artifact@v*
       - name: Commit generated CSV-Ws to the repository
+        if: ${{ steps.process-files.outputs.has_outputs }}
         run: |
           echo $'\nCommitting CSV-Ws\n'
           git config --global user.name "CSV-W from csv upload generator"
@@ -93,5 +95,6 @@ jobs:
 
       - name: Publish CSV-Ws and logs to GitHub Pages
         # TODO: Publish generated CSV-Ws and logs to GitHub pages.
+        if: ${{ steps.process_files.outputs.has_outputs }}
         run: |
           echo $'\nPublishing CSV-Ws to GitHub Pages\n'
