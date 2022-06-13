@@ -74,7 +74,7 @@ jobs:
               fi
               
               echo "Inspecting CSV-W"
-              csvcubed inspect "${out_path}/file_name-metadata.json" >> "${out_path/inspect_out.log}"
+              csvcubed inspect "${out_path}/file_name-metadata.json"
               
               echo "Finished processing file ${file}"
             fi
