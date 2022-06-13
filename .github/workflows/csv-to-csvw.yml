@@ -79,7 +79,7 @@ jobs:
               
               unset config_file
               echo "Finished processing file ${file}"
-              echo "::set-output name=has_outputs::${{ true }}"
+              echo "::set-output name=has_outputs::${{ false }}"
             fi
           done
 
