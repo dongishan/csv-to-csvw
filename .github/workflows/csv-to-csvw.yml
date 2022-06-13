@@ -53,7 +53,7 @@ jobs:
               echo $'\n'
               echo "Processing file ${file}"
               echo "Output path is ${out_path}"
-          
+
               csv_file=${file}
               for file_secondary in "${added_modified_files[@]}"; do
                 file_secondary_name="${file_secondary%.*}"
@@ -74,13 +74,11 @@ jobs:
               fi
               
               echo "Inspecting CSV-W"
-              ls -la "${GITHUB_WORKSPACE}/${out_path}/"
               csvcubed inspect "${GITHUB_WORKSPACE}/${out_path}${file_name//[ ,_]/-}.${file_extension}-metadata.json" >> "${out_path}inspect_output.txt"
               
               unset config_file
               echo "Finished processing file ${file}"
               echo "::set-output name=has_outputs::${{ toJSON(true) }}"
-
             fi
           done
 
@@ -100,4 +98,19 @@ jobs:
         with:
           name: assets-for-download
           path: out
-          
+
+      - name: Publish CSV-Ws and logs to GitHub Pages
+        if: ${{ fromJSON(steps.process-files.outputs.has_outputs) == true }}
+        run: |
+          echo $'\n'
+          echo "Publishing to GitHub Pages"
+          git -b checkout gh-pages
+          rm -r csv
+          rm -r LICENSE
+          rm -r README.md
+          rm -r .github/workflows
+          touch .nojekyll
+          git add .nojekyll
+          git add out
+          git commit -m "Updating outputs in GitHub Pages"
+          git push
