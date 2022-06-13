@@ -81,9 +81,6 @@ jobs:
             fi
           done
 
-          echo $'\nDisplaying outputs:'
-          ls out/
-
       # TODO: Change this to upload to artifacts: upload-artifact@v*
       - name: Commit generated CSV-Ws to the repository
         run: |
