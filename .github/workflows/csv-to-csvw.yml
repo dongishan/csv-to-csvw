@@ -53,7 +53,7 @@ jobs:
               echo $'\n'
               echo "Processing file ${file}"
               echo "Output path is ${out_path}"
-          
+
               csv_file=${file}
               for file_secondary in "${added_modified_files[@]}"; do
                 file_secondary_name="${file_secondary%.*}"
@@ -89,7 +89,9 @@ jobs:
           echo $'\nCommitting CSV-Ws\n'
           git config --global user.name "CSV-W from csv upload generator"
           git checkout -b gh-pages
+          git push -u origin gh-pages
           git pull
+
           touch .nojekyll
           git add .nojekyll
           git add out/
