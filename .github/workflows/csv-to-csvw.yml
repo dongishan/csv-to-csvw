@@ -79,7 +79,6 @@ jobs:
               
               unset config_file
               echo "Finished processing file ${file}"
-              echo "::set-output name=has_outputs::${{ true }}"
           done
 
       # TODO: Change this to upload to artifacts: upload-artifact@v*
