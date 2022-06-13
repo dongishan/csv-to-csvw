@@ -52,9 +52,8 @@ jobs:
               echo "Processing file ${file}"
 
               csv_file=${file}
-              out_path="out/${file}/"
+              out_path="out/${file_name#csv/}/"
               echo "Output path is ${out_path}"
-              echo $file_name
 
               for file_secondary in "${added_modified_files[@]}"; do
                 file_secondary_name="${file_secondary%.*}"
