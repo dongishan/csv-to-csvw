@@ -88,11 +88,10 @@ jobs:
         run: |
           echo $'\nCommitting CSV-Ws\n'
           git config --global user.name "CSV-W from csv upload generator"
+          git checkout -b gh-pages
           git pull
           touch .nojekyll
           git add .nojekyll
           git add out/
           git commit -m "CSV-Ws generated from csv upload - $(date +'%d-%m-%Y at %H:%M:%S')"
-          git checkout -b gh-pages
-          git reset --hard main
-          git push -f
+          git push
