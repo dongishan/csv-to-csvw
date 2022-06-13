@@ -93,7 +93,9 @@ jobs:
           git pull
 
           touch .nojekyll
+          touch README.md
           git add .nojekyll
+          git add README.md
           git add out/
           git commit -m "CSV-Ws generated from csv upload - $(date +'%d-%m-%Y at %H:%M:%S')"
           git push
