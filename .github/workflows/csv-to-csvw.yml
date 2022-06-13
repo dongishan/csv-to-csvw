@@ -66,7 +66,7 @@ jobs:
               if [[ -z $config_file ]]; then
                 echo "Config for ${csv_file} is not available"
                 echo "Building CSV-W"
-                csvcubed build ${csv_file} --our $out_path
+                csvcubed build ${csv_file} --out $out_path
               else
                 echo "Config for ${csv_file} is available: ${config_file}"
                 echo "Building CSV-W"
