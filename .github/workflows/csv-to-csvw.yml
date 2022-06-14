@@ -112,8 +112,8 @@ jobs:
 
           repo_name=${{ github.repository  }}    
           commit_id=${{ github.sha }}      
-          files=$(find . -type f -path '*out/*')
-          echo "${files}"
+          mapfile -d $'\0' out_files < <(find . -type f -path '*out/*' -print0)
+          echo "${out_files}"
 
           touch .nojekyll
           touch index.html
@@ -128,7 +128,7 @@ jobs:
               <div id="files-container"></div>
               <script type="text/javascript">
                 var str = '<ul>';
-                ${files}.forEach(function(file) {
+                ${out_files}.forEach(function(file) {
                   str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/csv-with-config.csv">'+file+'</a></li>';
                 });
                 str += '</ul>';
