@@ -124,5 +124,7 @@ jobs:
           </html>
           EOL
 
+          git add .nojekyll
+          git add index.html
           git commit -a -m "Updating outputs in GitHub Pages - $(date +'%d-%m-%Y at %H:%M:%S')"
           git push --set-upstream origin gh-pages -f
