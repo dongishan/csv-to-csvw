@@ -133,7 +133,7 @@ jobs:
                 files.forEach(function(file) {
                   file = file.replace("./","")
                   link = "https://raw.githubusercontent.com/${repo_name}/gh-pages/"+file
-                  html_str += "<li>"+"<a href='"+ link + "' target="_blank">"+file+"</a></li>";
+                  html_str += "<li>"+"<a href='"+ link + "' target='"_blank"''>"+file+"</a></li>";
                 });
                 html_str += "</ul>";
                 document.getElementById("files-container").innerHTML = html_str;
