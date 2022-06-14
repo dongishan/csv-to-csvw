@@ -114,7 +114,7 @@ jobs:
           commit_id=${{ github.sha }}      
           touch .nojekyll
           touch index.html
-
+          
           cat > index.html <<EOL
           <!doctype html>
           <html>
@@ -122,6 +122,17 @@ jobs:
             </head>
             <body>
               <h1>CSV-Ws generated for the commit with id ${commit_id}</h1>
+              <div id="files-container"></div>
+              <script type="text/javascript">
+                var files = ["csv-1/csv.csv", "csv-2/csv.csv"]
+                var str = '<ul>';
+                files.forEach(function(file) {
+                  str += '<li>'+ '<a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/csv-with-config.csv">file</a>' + '</li>';
+                });
+                str += '</ul>';
+                document.getElementById("files-container").innerHTML = str;
+              </script>
+              
               <a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/csv-with-config.csv">out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/csv-with-config.csv</a>
             </body>
           </html>
