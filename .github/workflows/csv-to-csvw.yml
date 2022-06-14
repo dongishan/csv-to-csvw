@@ -135,7 +135,7 @@ jobs:
                 console.log("Files: "+ files);
                 files.forEach(function(file) {
                   file = file.replace("./","")
-                  str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/"+file>'+file+'</a></li>';
+                  str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/"'+file+'>'+file+'</a></li>';
                 });
                 str += '</ul>';
                 document.getElementById("files-container").innerHTML = str;
