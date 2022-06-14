@@ -117,7 +117,7 @@ jobs:
           processed_out_files=$(printf ",%s" "${out_files[@]}")
           echo "${processed_out_files}"
           echo "--------"
-          
+
           touch .nojekyll
           touch index.html
 
@@ -132,9 +132,10 @@ jobs:
               <script type="text/javascript">
                 var str = '<ul>';
                 var files = "${processed_out_files}".split(',');
-                console.log("Files: "+ files);Ì
+                console.log("Files: "+ files);
                 files.forEach(function(file) {
-                  str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/csv-with-config.csv">'+file+'</a></li>';
+                  file = file.replace("./","")
+                  str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/"+file>'+file+'</a></li>';
                 });
                 str += '</ul>';
                 document.getElementById("files-container").innerHTML = str;
