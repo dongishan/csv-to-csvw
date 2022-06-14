@@ -109,7 +109,22 @@ jobs:
           rm -r LICENSE
           rm -r README.md
           rm -r .github/workflows
+          
           touch .nojekyll
+          touch index.html
+          
+          cat > index.html <<EOL
+          <!doctype html>
+          <html>
+            <head>
+            </head>
+            <body>
+              <p>Add urls here</p>
+            </body>
+          </html>
+          EOL
+
           git add .nojekyll
+          git add index.html
           git commit -a -m "Updating outputs in GitHub Pages - $(date +'%d-%m-%Y at %H:%M:%S')"
           git push --set-upstream origin gh-pages -f
