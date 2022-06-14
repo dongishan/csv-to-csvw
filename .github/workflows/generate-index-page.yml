@@ -3,9 +3,9 @@ name: Generates GitHub Pages index with csvcubed build command output urls.
 on:
   push:
     branches:
-      - 'gh-pages'
-    paths:
-      - 'out/**'
+      - "gh-pages"
+    # paths:
+    #   - "out/**"
 
 jobs:
   generate_gh_pages_index:
@@ -15,8 +15,23 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v2
         with:
-          ref: 'gh-pages'
+          ref: "gh-pages"
           fetch-depth: 0
-      
+
       - name: View working directory
         run: ls -la $GITHUB_WORKSPACE
+
+      - name: Generate index page
+        run: |
+          touch index.html
+          cat > index.html <<EOL
+          <!doctype html>
+          <html>
+            <head>
+            </head>
+            <body>
+              <title>CSV-Ws generated on (date +'%d-%m-%Y at %H:%M:%S') for the commit with id ${{ github.sha }}</title>
+              <p>Add urls here</p>
+            </body>
+          </html>
+          EOL
