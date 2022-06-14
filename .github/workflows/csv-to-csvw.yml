@@ -112,8 +112,8 @@ jobs:
 
           repo_name=${{ github.repository  }}    
           commit_id=${{ github.sha }}      
-          mapfile -d $'\0' out_files < <(find . -type f -path '*out/*' -print0)
-          echo "${out_files}"
+          readarray -d '' out_files < <(find . -type f -path '*out/*' -print0)
+          echo "out_files: ${out_files}"
 
           touch .nojekyll
           touch index.html
