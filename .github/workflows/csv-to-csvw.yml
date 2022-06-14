@@ -113,6 +113,7 @@ jobs:
           repo_name=${{ github.repository  }}    
           commit_id=${{ github.sha }}      
           mapfile -d ',' -t out_files < <(printf '%s,' $(find . -type f -path '*out/*'))
+          processed_out_files=$(printf ",%s" "${out_files[@]}")
 
           touch .nojekyll
           touch index.html
