@@ -5,7 +5,7 @@ on:
     branches:
       - gh-pages
     paths:
-      - "out/**"
+      - 'out/**'
 
 jobs:
   generate_gh_pages_index:

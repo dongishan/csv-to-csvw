@@ -5,9 +5,9 @@ on:
     branches:
       - main
     paths:
-      - "csv/**"
-      - "*.csv"
-      - "*.json"
+      - 'csv/**'
+      - '*.csv'
+      - '*.json'
 
 jobs:
   generate_csvw_from_csv_upload:
