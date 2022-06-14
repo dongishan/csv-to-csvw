@@ -112,7 +112,7 @@ jobs:
 
           repo_name=${{ github.repository  }}    
           commit_id=${{ github.sha }}      
-          files=find . -type f -path 'out/*'
+          files=$(find . -type f -path '*out/*')
           echo "${files}"
 
           touch .nojekyll
