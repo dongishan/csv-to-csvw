@@ -112,7 +112,7 @@ jobs:
           touch .nojekyll
 
           touch index.html
-          index.html <<EOL
+          cat > index.html <<EOL
           <!doctype html>
           <html>
             <head>
