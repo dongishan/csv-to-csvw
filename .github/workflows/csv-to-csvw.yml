@@ -128,10 +128,10 @@ jobs:
               <script type="text/javascript">
                 var str = '<ul>';
                 var files = "${processed_out_files}".split(',');
-                files.shift();
+                
                 files.forEach(function(file) {
                   file = file.replace("./","")
-                  str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/"'+file+'>'+file+'</a></li>';
+                  str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/">'+file+'</a></li>';
                 });
                 str += '</ul>';
                 document.getElementById("files-container").innerHTML = str;
