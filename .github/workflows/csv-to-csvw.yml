@@ -110,8 +110,8 @@ jobs:
           rm -r README.md
           rm -r .github/workflows
 
-          repo_name = ${{ github.repository  }}    
-          commit_id = ${{ github.sha }}      
+          repo_name=${{ github.repository  }}    
+          commit_id=${{ github.sha }}      
           touch .nojekyll
           touch index.html
 
