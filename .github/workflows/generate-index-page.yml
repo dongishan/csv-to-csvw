@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "out/**"
 
 jobs:
   generate_gh_pages_index:
@@ -20,6 +18,9 @@ jobs:
 
       - name: View working directory
         run: ls -la $GITHUB_WORKSPACE
+
+      - name: View outputs directory
+        run: ls -la out
 
       - name: Generate index page
         run: |
