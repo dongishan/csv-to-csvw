@@ -116,7 +116,7 @@ jobs:
 
           touch .nojekyll
           touch index.html
-          
+
           cat > index.html <<EOL
           <!doctype html>
           <html>
@@ -126,15 +126,16 @@ jobs:
               <h3>CSV-Ws generated are as below. The latest commit id is ${commit_id}.</h3>
               <div id="files-container"></div>
               <script type="text/javascript">
-                var str = '<ul>';
+                var html_str = "<ul>";
                 var files = "${processed_out_files}".split(',');
                 
                 files.forEach(function(file) {
                   file = file.replace("./","")
-                  str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/">'+file+'</a></li>';
+                  link = "https://raw.githubusercontent.com/${repo_name}/gh-pages/"+file
+                  html_str += "<li>"+"<a href='"+ link + "'>"+file+"</a></li>";
                 });
-                str += '</ul>';
-                document.getElementById("files-container").innerHTML = str;
+                html_str += "</ul>"";
+                document.getElementById("files-container").innerHTML = html_str;
               </script>
             </body>
           </html>
