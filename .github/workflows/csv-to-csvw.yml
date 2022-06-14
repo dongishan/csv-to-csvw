@@ -111,7 +111,8 @@ jobs:
           rm -r .github/workflows
           touch .nojekyll
 
-          cat > index.html <<EOL
+          touch index.html
+          index.html <<EOL
           <!doctype html>
           <html>
             <head>
