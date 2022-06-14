@@ -129,7 +129,7 @@ jobs:
               <script type="text/javascript">
                 var html_str = "<ul>";
                 var files = "${processed_out_files}".split(',');
-                
+                files.shift()
                 files.forEach(function(file) {
                   file = file.replace("./","")
                   link = "https://raw.githubusercontent.com/${repo_name}/gh-pages/"+file
