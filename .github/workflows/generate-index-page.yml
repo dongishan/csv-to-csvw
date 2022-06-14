@@ -3,13 +3,9 @@ name: Generates GitHub Pages index with csvcubed build command output urls.
 on:
   push:
     branches:
-<<<<<<< Updated upstream
-      - gh-pages
-=======
       - 'gh-pages'
     paths:
       - 'out/**'
->>>>>>> Stashed changes
 
 jobs:
   generate_gh_pages_index:
