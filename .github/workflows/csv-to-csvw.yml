@@ -110,21 +110,6 @@ jobs:
           rm -r README.md
           rm -r .github/workflows
           touch .nojekyll
-
-          touch index.html
-          cat > index.html <<EOL
-          <!doctype html>
-          <html>
-            <head>
-              <title>CSV-Ws generated on (date +'%d-%m-%Y at %H:%M:%S') with commit id ${{ github.sha }}</title>
-            </head>
-            <body>
-              <p>Add urls here</p>
-            </body>
-          </html>
-          EOL
-
           git add .nojekyll
-          git add index.html
           git commit -a -m "Updating outputs in GitHub Pages - $(date +'%d-%m-%Y at %H:%M:%S')"
           git push --set-upstream origin gh-pages -f
