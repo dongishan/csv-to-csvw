@@ -113,14 +113,10 @@ jobs:
           repo_name=${{ github.repository  }}    
           commit_id=${{ github.sha }}      
           mapfile -d ',' -t out_files < <(printf '%s,' $(find . -type f -path '*out/*'))
-          echo "--------"
-          processed_out_files=$(printf ",%s" "${out_files[@]}")
-          echo "${processed_out_files}"
-          echo "--------"
 
           touch .nojekyll
           touch index.html
-
+          
           cat > index.html <<EOL
           <!doctype html>
           <html>
@@ -132,7 +128,7 @@ jobs:
               <script type="text/javascript">
                 var str = '<ul>';
                 var files = "${processed_out_files}".split(',');
-                console.log("Files: "+ files);
+                files.shift();
                 files.forEach(function(file) {
                   file = file.replace("./","")
                   str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/"'+file+'>'+file+'</a></li>';
