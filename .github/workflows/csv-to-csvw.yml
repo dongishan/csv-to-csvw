@@ -112,9 +112,14 @@ jobs:
 
           repo_name=${{ github.repository  }}    
           commit_id=${{ github.sha }}      
-          out_files=( $(find . -type f -path '*out/*') )
+          mapfile -d ',' -t out_files < <(printf '%s,' $(find . -type f -path '*out/*'))
+          echo "--------"
           echo "${out_files}"
-
+          for file in "${out_files[@]}"; do
+            echo "${file}"
+          done
+          echo "--------"
+          
           touch .nojekyll
           touch index.html
 
