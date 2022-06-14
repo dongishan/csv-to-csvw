@@ -115,7 +115,7 @@ jobs:
           <!doctype html>
           <html>
             <head>
-              <title>CSV-Ws generated on ${{ (date +'%d-%m-%Y at %H:%M:%S') }} with commit id ${{ github.sha }}</title>
+              <title>CSV-Ws generated on (date +'%d-%m-%Y at %H:%M:%S') with commit id ${{ github.sha }}</title>
             </head>
             <body>
               <p>Add urls here</p>
