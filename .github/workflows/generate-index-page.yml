@@ -1,6 +1,14 @@
 name: Generates GitHub Pages index with csvcubed build command output urls.
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'csv/**'
+      - '*.csv'
+      - '*.json'
+
 jobs:
   generate_gh_pages_index:
     name: Generate GitHub Pages index
