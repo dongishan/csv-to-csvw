@@ -113,8 +113,8 @@ jobs:
           touch .nojekyll
           touch index.html
           
-          echo "$GITHUB_CONTEXT"
-          
+          echo "${GITHUB_CONTEXT}"
+
           cat > index.html <<EOL
           <!doctype html>
           <html>
