@@ -112,7 +112,7 @@ jobs:
 
           repo_name=${{ github.repository  }}    
           commit_id=${{ github.sha }}      
-          out_files=$(find . -type f -path '*out/*')
+          out_files=`$(find . -type f -path '*out/*')`
           echo "${out_files}"
 
           touch .nojekyll
@@ -124,7 +124,7 @@ jobs:
             <head>
             </head>
             <body>
-              <h3>CSV-Ws generated for the commit with id ${commit_id}</h3>
+              <h3>CSV-Ws generated are as below. The commit id is ${commit_id}.</h3>
               <div id="files-container"></div>
               <script type="text/javascript">
                 var str = '<ul>';
