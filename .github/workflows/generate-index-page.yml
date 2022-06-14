@@ -3,11 +3,7 @@ name: Generates GitHub Pages index with csvcubed build command output urls.
 on:
   push:
     branches:
-      - main
-    paths:
-      - 'csv/**'
-      - '*.csv'
-      - '*.json'
+      - gh-pages
 
 jobs:
   generate_gh_pages_index:
