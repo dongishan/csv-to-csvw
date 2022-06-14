@@ -112,6 +112,9 @@ jobs:
 
           repo_name=${{ github.repository  }}    
           commit_id=${{ github.sha }}      
+          files=find out/ 
+          echo "${files}"
+
           touch .nojekyll
           touch index.html
 
@@ -121,12 +124,11 @@ jobs:
             <head>
             </head>
             <body>
-              <h1>CSV-Ws generated for the commit with id ${commit_id}</h1>
+              <h2>CSV-Ws generated for the commit with id ${commit_id}</h2>
               <div id="files-container"></div>
               <script type="text/javascript">
-                var files = ["csv-1/csv.csv", "csv-2/csv.csv"]
                 var str = '<ul>';
-                files.forEach(function(file) {
+                ${files}.forEach(function(file) {
                   str += '<li><a href="https://raw.githubusercontent.com/${repo_name}/gh-pages/out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/csv-with-config.csv">'+file+'</a></li>';
                 });
                 str += '</ul>';
