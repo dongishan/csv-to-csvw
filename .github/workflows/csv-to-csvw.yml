@@ -114,10 +114,8 @@ jobs:
           commit_id=${{ github.sha }}      
           mapfile -d ',' -t out_files < <(printf '%s,' $(find . -type f -path '*out/*'))
           echo "--------"
-          echo "${out_files}"
-          for file in "${out_files[@]}"; do
-            echo "${file}"
-          done
+          processed_out_files=$(printf ",%s" "${out_files[@]}")
+          echo "${processed_out_files}"
           echo "--------"
           
           touch .nojekyll
@@ -129,7 +127,7 @@ jobs:
             <head>
             </head>
             <body>
-              <h3>CSV-Ws generated are as below. The commit id is ${commit_id}.</h3>
+              <h3>CSV-Ws generated are as below. The latest commit id is ${commit_id}.</h3>
               <div id="files-container"></div>
               <script type="text/javascript">
                 var str = '<ul>';
