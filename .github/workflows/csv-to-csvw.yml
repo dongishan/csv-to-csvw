@@ -113,9 +113,9 @@ jobs:
           rm -r README.md
           rm -r .github/workflows
 
-          repo_name=${{ github.repository#*/ }}    
-          username=${{github.actor}}
-          commit_id=${{ github.sha }}      
+          repo_name=${GITHUB_REPOSITORY#*/}    
+          username=${GITHUB_REPOSITORY_OWNER}
+          commit_id=${GITHUB_SHA}      
           mapfile -d ',' -t out_files < <(printf '%s,' $(find . -type f -path '*out/*'))
           processed_out_files=$(printf ",%s" "${out_files[@]}")
 
