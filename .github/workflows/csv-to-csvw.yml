@@ -44,7 +44,7 @@ jobs:
         run: |
           echo "::set-output name=has_outputs::${{ toJSON(false) }}"
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-added-changed-files.outputs.added_modified }}')
-          
+
           for file in "${added_modified_files[@]}"; do
             echo "${file}"
             file_path="${file%.*}"
@@ -113,7 +113,7 @@ jobs:
           rm -r README.md
           rm -r .github/workflows
 
-          repo_name=${{ github.repository  }}    
+          repo_name=${{ github.repository#*/ }}    
           username=${{github.actor}}
           commit_id=${{ github.sha }}      
           mapfile -d ',' -t out_files < <(printf '%s,' $(find . -type f -path '*out/*'))
