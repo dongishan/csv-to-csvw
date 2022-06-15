@@ -81,7 +81,6 @@ jobs:
               
               unset config_file
               echo "Finished processing file ${file}"
-              echo "Set to true"
               echo "::set-output name=has_outputs::${{ toJSON(true) }}"
             fi
           done
@@ -89,7 +88,6 @@ jobs:
       - name: Commit generated CSV-Ws and logs to the repository
         if: ${{ fromJSON(steps.process-files.outputs.has_outputs) == true }}
         run: |
-          echo "Commiting"
           echo $'\nCommitting CSV-Ws\n'
           git config --global user.name "CSV-W from csv upload generator"
           git pull
