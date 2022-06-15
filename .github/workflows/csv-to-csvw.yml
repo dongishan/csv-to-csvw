@@ -114,6 +114,7 @@ jobs:
           rm -r .github/workflows
 
           repo_name=${{ github.repository  }}    
+          username=${{github.actor}}
           commit_id=${{ github.sha }}      
           mapfile -d ',' -t out_files < <(printf '%s,' $(find . -type f -path '*out/*'))
           processed_out_files=$(printf ",%s" "${out_files[@]}")
@@ -135,7 +136,7 @@ jobs:
                 files.shift()
                 files.forEach(function(file) {
                   file = file.replace("./","")
-                  link = "https://raw.githubusercontent.com/${repo_name}/gh-pages/"+file
+                  link = "https://${username}.github.io/${repo_name}/"+file
                   html_str += "<li>"+"<a href='"+ link + "'>"+file+"</a></li>";
                 });
                 html_str += "</ul>";
