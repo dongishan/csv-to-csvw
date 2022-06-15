@@ -33,7 +33,7 @@ jobs:
       - name: View working directory
         run: | 
           ls -la "${GITHUB_WORKSPACE}/.github"
-          run: ls -la "${GITHUB_WORKSPACE}/.github/scripts/"
+          ls -la "${GITHUB_WORKSPACE}/.github/scripts/"
 
       - name: Get all added/changed files inside csv folder
         id: get-added-changed-files
