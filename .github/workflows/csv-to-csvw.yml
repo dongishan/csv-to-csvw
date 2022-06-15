@@ -43,6 +43,8 @@ jobs:
         id: process-files
         run: |
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-added-changed-files.outputs.added_modified }}')
+          echo "${added_modified_files[@]}"
+          
           for file in "${added_modified_files[@]}"; do
             file_path="${file%.*}"
             file_name="${file_path##*/}"
