@@ -46,7 +46,7 @@ jobs:
           mapfile -d ',' -t added_modified_files < <(printf '%s,' '${{ steps.get-added-changed-files.outputs.added_modified }}')
 
           chmod +x "${GITHUB_WORKSPACE}/.github/scripts/generate_csvws.sh"
-          "${GITHUB_WORKSPACE}/.github/scripts/generate_csvws.sh"
+          "${GITHUB_WORKSPACE}/.github/scripts/generate_csvws.sh ${added_modified_files}"
 
       - name: Commit generated CSV-Ws and logs to the repository
         if: ${{ fromJSON(steps.process-files.outputs.has_outputs) == true }}
