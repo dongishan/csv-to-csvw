@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <h3>CSV-Ws generated are as below. The latest commit id is 9e08b44fd6755d02219738ac630e7db157390349.</h3>
+    <div id="files-container"></div>
+    <script type="text/javascript">
+      var html_str = "<ul>";
+      var files = ",./out/csv_with_config/entrant.csv,./out/csv_with_config/entrant.csv-metadata.json,./out/csv_with_config/inspect_output.txt,./out/csv_with_config/song.table.json,./out/csv_with_config/csv-with-config.csv-metadata.json,./out/csv_with_config/year.csv,./out/csv_with_config/song.csv,./out/csv_with_config/song.csv-metadata.json,./out/csv_with_config/language.csv,./out/csv_with_config/language.csv-metadata.json,./out/csv_with_config/year.csv-metadata.json,./out/csv_with_config/entrant.table.json,./out/csv_with_config/language.table.json,./out/csv_with_config/csv-with-config.csv,./out/csv_with_config/year.table.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/entrant.csv,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/entrant.csv-metadata.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/inspect_output.txt,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/song.table.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/csv-with-config.csv-metadata.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/year.csv,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/song.csv,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/song.csv-metadata.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/language.csv,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/language.csv-metadata.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/year.csv-metadata.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/entrant.table.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/language.table.json,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/csv-with-config.csv,./out/csv_in_folder/csv_in_sub_folder/csv_with_config_in_sub_sub_folder/csv_with_config/year.table.json,./out/csv_in_folder/csv_in_sub_folder/csv_without_config/csv-without-config.csv-metadata.json,./out/csv_in_folder/csv_in_sub_folder/csv_without_config/inspect_output.txt,./out/csv_in_folder/csv_in_sub_folder/csv_without_config/csv-without-config.csv,./out/csv_in_folder/csv_in_sub_folder/csv_without_config/dimension.csv-metadata.json,./out/csv_in_folder/csv_in_sub_folder/csv_without_config/dimension.csv,./out/csv_in_folder/csv_in_sub_folder/csv_without_config/dimension.table.json,./out/csv_in_folder/csv_without_config/csv-without-config.csv-metadata.json,./out/csv_in_folder/csv_without_config/inspect_output.txt,./out/csv_in_folder/csv_without_config/csv-without-config.csv,./out/csv_in_folder/csv_without_config/dimension.csv-metadata.json,./out/csv_in_folder/csv_without_config/dimension.csv,./out/csv_in_folder/csv_without_config/dimension.table.json".split(',');
+      files.shift()
+      files.forEach(function(file) {
+        file = file.replace("./","")
+        link = "https://dongishan.github.io/csv-to-csvw/"+file
+        html_str += "<li>"+"<a href='"+ link + "'>"+file+"</a></li>";
+      });
+      html_str += "</ul>";
+      document.getElementById("files-container").innerHTML = html_str;
+    </script>
+  </body>
+</html>
